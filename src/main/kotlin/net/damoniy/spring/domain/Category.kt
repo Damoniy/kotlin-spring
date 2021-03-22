@@ -1,11 +1,13 @@
 package net.damoniy.spring.domain
 
+import com.fasterxml.jackson.annotation.JsonManagedReference
 import java.io.Serializable
 import javax.persistence.*
 
 @Entity
 class Category(@Id @GeneratedValue(strategy = GenerationType.IDENTITY) val id: Int?, val nome:String): Serializable {
 
+    @JsonManagedReference
     @ManyToMany(mappedBy = "categories")
     val products:List<Product> = ArrayList<Product>()
 

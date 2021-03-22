@@ -1,5 +1,6 @@
 package net.damoniy.spring.domain
 
+import com.fasterxml.jackson.annotation.JsonBackReference
 import java.io.Serializable
 import javax.persistence.*
 import java.util.ArrayList
@@ -7,6 +8,7 @@ import java.util.ArrayList
 @Entity
 class Product(@Id @GeneratedValue(strategy = GenerationType.IDENTITY) val id: Int?, val name: String?, val price: Double?): Serializable {
 
+    @JsonBackReference
     @ManyToMany
     @JoinTable(name = "PRODUCT_CATEGORY", joinColumns = [JoinColumn(name = "product_id")], inverseJoinColumns = [JoinColumn(name = "category_id")])
     val categories: List<Category> = ArrayList<Category>()
