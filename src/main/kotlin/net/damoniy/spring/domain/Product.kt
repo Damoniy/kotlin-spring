@@ -2,12 +2,14 @@ package net.damoniy.spring.domain
 
 import java.io.Serializable
 import javax.persistence.*
+import java.util.ArrayList
 
 @Entity
-class Category(@Id @GeneratedValue(strategy = GenerationType.IDENTITY) val id: Int?, val nome:String): Serializable {
+class Product(@Id @GeneratedValue(strategy = GenerationType.IDENTITY) val id: Int?, val name: String?, val price: Double?): Serializable {
 
-    @ManyToMany(mappedBy = "categories")
-    val products:List<Product> = ArrayList<Product>()
+    @ManyToMany
+    @JoinTable(name = "PRODUCT_CATEGORY", joinColumns = [JoinColumn(name = "product_id")], inverseJoinColumns = [JoinColumn(name = "category_id")])
+    val categories: List<Category> = ArrayList<Category>()
 
     override fun hashCode(): Int {
         val prime = 30
