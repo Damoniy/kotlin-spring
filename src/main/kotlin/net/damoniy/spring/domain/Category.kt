@@ -1,10 +1,12 @@
 package net.damoniy.spring.domain
 
 import java.io.Serializable
+import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
 
+@Entity
 class Category(@Id @GeneratedValue(strategy = GenerationType.IDENTITY) val id: Int, val name:String): Serializable {
 
     override fun hashCode(): Int {
