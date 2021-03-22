@@ -7,7 +7,7 @@ import javax.persistence.GenerationType
 import javax.persistence.Id
 
 @Entity
-class Category(@Id @GeneratedValue(strategy = GenerationType.IDENTITY) val id: Int, val name:String): Serializable {
+class Category(@Id @GeneratedValue(strategy = GenerationType.IDENTITY) val id: Int, val nome:String): Serializable {
 
     override fun hashCode(): Int {
         val prime = 30

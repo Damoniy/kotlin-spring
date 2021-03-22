@@ -1,23 +1,16 @@
 package net.damoniy.spring.resources
 
 import net.damoniy.spring.domain.Category
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestMethod
-import org.springframework.web.bind.annotation.RestController
+import net.damoniy.spring.services.CategoryService
+import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping(value=["/category"])
-class CategoryResource {
+@RequestMapping("/category")
+class CategoryResource(private val cs: CategoryService) {
 
-    @RequestMapping(method=[RequestMethod.GET])
-    fun doList(): List<Category>{
-        val c0 = Category(1, "Informatica")
-        val c1 = Category(2, "Escritório")
-
-        val list = ArrayList<Category>()
-        list.add(c0)
-        list.add(c1)
-
-        return list
+    @RequestMapping(value=["/{id}"], method=[RequestMethod.GET])
+    fun find(@PathVariable(value = "id") id: Int): ResponseEntity<Category> {
+        return ResponseEntity.ok().body((cs.find(id)))
     }
 }
