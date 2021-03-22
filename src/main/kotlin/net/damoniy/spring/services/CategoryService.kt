@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service
 import java.util.*
 
 @Service
-class CategoryService(private val r: CategoryRepository) {
+class CategoryService(@Autowired private val r: CategoryRepository) {
 
     fun find(id: Int): Category? {
         val obj: Optional<Category> = r.findById(id)
